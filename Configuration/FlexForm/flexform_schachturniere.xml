@@ -1,0 +1,28 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <type>array</type>
+                <el>
+                    <settings.turnier_id>
+                        <exclude>1</exclude>
+                        <label>turnier_id</label>
+                        <config>
+                            <type>input</type>
+                        </config>
+                    </settings.turnier_id>
+                    <settings.session_key>
+                        <exclude>1</exclude>
+                        <label>session_key</label>
+                        <config>
+                            <type>input</type>
+                        </config>
+                    </settings.session_key>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
