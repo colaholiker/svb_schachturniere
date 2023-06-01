@@ -9,7 +9,7 @@ call_user_func(
             'SvbSchachturniere',
             'Viewtournament',
             [
-                \SchachvereinBalingen\SvbSchachturniere\Controller\ViewtournamentController::class => 'view'
+                \SchachvereinBalingen\SvbSchachturniere\Controller\viewtournamentController::class => 'view'
             ],
             // non-cacheable actions
             [
