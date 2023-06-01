@@ -6,10 +6,10 @@ call_user_func(
     function ($extKey) {
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'SchachvereinBalingen.SvbSchachturniere',
+            'SvbSchachturniere',
             'Viewtournament',
             [
-                'viewtournament' => 'view'
+                \SchachvereinBalingen\SvbSchachturniere\Controller\ViewtournamentController::class => 'view'
             ],
             // non-cacheable actions
             [
@@ -37,5 +37,5 @@ call_user_func(
 	   }'
         );
     },
-    $_EXTKEY
+    'svb_schachturniere'
 );
