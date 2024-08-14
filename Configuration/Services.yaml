@@ -4,6 +4,6 @@ services:
     autoconfigure: true
     public: false
 
-  SchachvereinBalingen\SvbSvwtabelle\:
+  SchachvereinBalingen\SvbSchachturniere\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
