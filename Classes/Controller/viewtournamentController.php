@@ -23,7 +23,7 @@ class ViewtournamentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 	 *
 	 * @return void
 	 */
-	public function viewAction(): ResponseInterface
+	public function viewAction()
 	{
 		$target = 'http://www.schachturniere.com/schach/swiss-iframe.cgi';
 		$temp_post = $_GET;
