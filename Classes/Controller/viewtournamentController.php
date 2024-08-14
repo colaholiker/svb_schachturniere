@@ -71,9 +71,6 @@ class ViewtournamentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionC
 
 		$this->view->assign('output', $output);
 
-		return $this->responseFactory->createResponse()
-			       ->withAddedHeader('Content-Type', 'text/html; charset=utf-8')
-			       ->withBody($this->streamFactory->createStream($this->view->render()));
-
+		return $this->htmlResponse();
 	}
 }
