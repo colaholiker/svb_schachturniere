@@ -18,57 +18,62 @@ namespace SchachvereinBalingen\SvbSchachturniere\Controller;
  */
 class ViewtournamentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-    /**
-     * action list
-     *
-     * @return void
-     */
-    public function viewAction()
-    {
-        $target = 'http://www.schachturniere.com/schach/swiss-iframe.cgi';
-        $temp_post = $_GET;
+	/**
+	 * action list
+	 *
+	 * @return void
+	 */
+	public function viewAction(): ResponseInterface
+	{
+		$target = 'http://www.schachturniere.com/schach/swiss-iframe.cgi';
+		$temp_post = $_GET;
 
-        $temp_post['turnier_id'] = $this->settings['turnier_id'];
-        $temp_post['session_key'] = $this->settings['session_key'];
+		$temp_post['turnier_id'] = $this->settings['turnier_id'];
+		$temp_post['session_key'] = $this->settings['session_key'];
 
-        if (empty($temp_post['action'])) {
-            $temp_post['action'] = 'tab_auflistung';
-        }
+		if (empty($temp_post['action'])) {
+			$temp_post['action'] = 'tab_auflistung';
+		}
 
-        $target = $target . '?' . http_build_query($temp_post);
+		$target = $target . '?' . http_build_query($temp_post);
 
-        if (is_resource(@fopen($target, 'r'))) {
-            $doc = new \DOMDocument();
-            $doc->preserveWhiteSpace = false;
-            $doc->substituteEntities = false;
-            @$doc->loadHTMLFile($target);
+		if (is_resource(@fopen($target, 'r'))) {
+			$doc = new \DOMDocument();
+			$doc->preserveWhiteSpace = false;
+			$doc->substituteEntities = false;
+			@$doc->loadHTMLFile($target);
 
 
-            $output = '';
-            foreach ($doc->getElementsByTagName('table') as $key => $temp) {
-                if ($key == 1) {
-                    $links = $temp->getElementsByTagName('a');
+			$output = '';
+			foreach ($doc->getElementsByTagName('table') as $key => $temp) {
+				if ($key == 1) {
+					$links = $temp->getElementsByTagName('a');
 
-                    foreach ($links as $link) {
-                        $temp_href = $link->getAttribute('href');
+					foreach ($links as $link) {
+						$temp_href = $link->getAttribute('href');
 
-                        $temp_href_query = parse_url($temp_href, PHP_URL_QUERY);
-                        parse_str($temp_href_query, $temp_href_options);
+						$temp_href_query = parse_url($temp_href, PHP_URL_QUERY);
+						parse_str($temp_href_query, $temp_href_options);
 
-                        $temp_href = $this->uriBuilder->reset()->setArguments($temp_href_options)->build();
+						$temp_href = $this->uriBuilder->reset()->setArguments($temp_href_options)->build();
 
-                        if ($link->getAttribute('target') != '_blank') {
-                            $link->setAttribute('href', utf8_encode($temp_href));
-                        }
-                    }
+						if ($link->getAttribute('target') != '_blank') {
+							$link->setAttribute('href', utf8_encode($temp_href));
+						}
+					}
 
-                    $output .= html_entity_decode($doc->saveHTML($temp));
-                }
-            }
-        } else {
-            $output = '<p>die Daten könnten nicht eingelesen werden (' . $target . ')</p>';
-        }
+					$output .= html_entity_decode($doc->saveHTML($temp));
+				}
+			}
+		} else {
+			$output = '<p>die Daten könnten nicht eingelesen werden (' . $target . ')</p>';
+		}
 
-        $this->view->assign('output', $output);
-    }
+		$this->view->assign('output', $output);
+
+		return $this->responseFactory->createResponse()
+			       ->withAddedHeader('Content-Type', 'text/html; charset=utf-8')
+			       ->withBody($this->streamFactory->createStream($this->view->render()));
+
+	}
 }
