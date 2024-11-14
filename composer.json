@@ -6,18 +6,8 @@
     "license": "GPL-2.0-or-later",
     "autoload": {
         "psr-4": {
-            "SchachvereinBalingen\\SvbSchachturniere\\": "Classes"
+            "SchachvereinBalingenEv\\SvbSchachturniere\\": "Classes"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Vendor\\Key\\Tests\\": "Tests"
-        }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
-        ]
     },
     "require-dev": {
         "ssch/typo3-rector": "^2.11"

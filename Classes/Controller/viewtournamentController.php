@@ -1,6 +1,6 @@
 <?php
 
-namespace SchachvereinBalingen\SvbSchachturniere\Controller;
+namespace SchachvereinBalingenEv\SvbSchachturniere\Controller;
 
 /***
  *
