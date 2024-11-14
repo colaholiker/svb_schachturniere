@@ -5,6 +5,8 @@ defined('TYPO3') || die('Access denied.');
 call_user_func(
     function ($extKey) {
 
+	$extKey='svb_schachturniere';
+
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'SvbSchachturniere',
             'Viewtournament',
