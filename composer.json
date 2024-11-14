@@ -1,14 +1,9 @@
 {
-    "name": "SchachvereinBalingen/svb_schachturniere",
+    "name": "schachverein_balingen_ev/svb_schachturniere",
     "type": "typo3-cms-extension",
     "description": "",
     "authors": [],
     "license": "GPL-2.0-or-later",
-    "require": {
-        "typo3/cms-core": "^12"
-    },
-    "require-dev": {
-    },
     "autoload": {
         "psr-4": {
             "SchachvereinBalingen\\SvbSchachturniere\\": "Classes"
@@ -19,21 +14,12 @@
             "Vendor\\Key\\Tests\\": "Tests"
         }
     },
-    "config": {
-        "SchachvereinBalingen-dir": ".Build/vendor",
-        "bin-dir": ".Build/bin"
-    },
     "scripts": {
         "post-autoload-dump": [
             "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
         ]
     },
-    "extra": {
-        "typo3/cms": {
-		"extension-key": "svb_schachturniere",
-		"cms-package-dir": "{$SchachvereinBalingen-dir}/typo3/cms",
-        	"web-dir": ".Build/public",
-        	"extension-svb_schachturniere": "svb_schachturniere"
-        }
+    "require-dev": {
+        "ssch/typo3-rector": "^2.11"
     }
 }
